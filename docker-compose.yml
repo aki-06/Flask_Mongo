@@ -1,0 +1,20 @@
+version: "3"
+
+volumes:
+  dbdata:
+
+services:
+  web:
+    build: ./web
+    container_name: web
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+  db:
+    build: ./db
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - "dbdata:/var/lib/data"
