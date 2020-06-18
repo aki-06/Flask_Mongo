@@ -274,3 +274,27 @@ db.<TARGET>.dropIndex(<NAME>)
 ```
 {<FLD>: {$size: <SIZE>}}
 ```
+
+## フィールドの更新
+
+```
+db.<TARGET>.update(<QUERY>, {$set: <FIELD>: xxx}, <OPTION>)
+```
+
+- OPTION
+    - 更新オプション
+        - multi: 条件に合致する全てを更新するかどうか
+        - upsert: 存在すれば更新、なければ挿入
+        - arrayFilters: 配列更新時に使う修飾子
+
+## フィールドの削除
+
+```
+db.<collection>.update(
+    <QUERY>,
+    {$unset: {<FIELD1>: "", ...}}
+)
+```
+
+- 指定された条件に一致するフィールドを削除する。
+- バリューには""(空文字)を固定で指定する
