@@ -298,3 +298,24 @@ db.<collection>.update(
 
 - 指定された条件に一致するフィールドを削除する。
 - バリューには""(空文字)を固定で指定する
+
+## フィールド名の変更
+
+```
+db.<COLLECTION>.update(
+    <QUERY>,
+    {$rename: {<FIELD1>: <NEW_NAME1>, ...}}
+)
+```
+
+## フィールドを現在日時で更新
+
+```
+db.<COLLECTION>.update(
+    <QUERY>,
+    {$currentDate: {<FIELD>: true, ...}}
+)
+```
+
+- Date型: "date"
+- Timestamp型: "timestamp"
