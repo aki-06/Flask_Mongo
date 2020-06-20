@@ -329,7 +329,7 @@ db.<COLLECTION>.update(
 )
 ```
 
-- 引き算の場合は<VALUE>に負の値を指定
+- 引き算の場合はVALUEに負の値を指定
 
 ## フィールドを乗算して更新
 
@@ -340,4 +340,63 @@ db.<COLLECTION>.update(
 )
 ```
 
-- 割り算の場合は<VALUE>に逆数を指定
+- 割り算の場合はVALUEに逆数を指定
+
+
+## 配列要素の追加
+
+```
+db.<COLLECTION>.update(
+    <QUERY>,
+    {$push: {"<FIELD1>": <VALUE1>, ...}}
+)
+```
+
+- FIELDにVALUEを追加する
+
+- 修飾子
+    - $each: 複数要素を同時に追加
+    - $slice: 配列要素を指定数に切り取り
+    - $sort: 配列要素をソート
+    - $position: 指定した位置へ要素を追加
+
+## 配列要素の更新
+
+```
+db.<COLLECTION>.update(
+    <QUERY>,
+    {<OPERATOR>: {"<ARRAY>.$[]": <VALUE>, ...}}
+)
+```
+
+- 全ての要素を更新
+
+```
+db.<COLLECTION>.update(
+    <QUERY>,
+    {<OPERATOR>: {"<ARRAY>.$[<ID>]": <VALUE>, ...}},
+    {arrayFilters: [<EXPRESSION>]}
+)
+```
+
+- 特定の要素を更新
+
+## 配列の削除
+
+```
+db.<COLLECTION>.update(
+    <QUERY>,
+    {$pop: {"<ARRAY>" : <-1 / 1>, ...}}
+)
+```
+
+- 配列の先頭/末尾の削除
+
+```
+db.<COLLECTION>.update(
+    <QUERY>,
+    {$pull: {"<ARRAY>": <EXPRESSION>, ...}}
+)
+```
+
+- ARRAYから条件EXPRESSIONに一致する要素を削除する。
