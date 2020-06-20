@@ -319,3 +319,25 @@ db.<COLLECTION>.update(
 
 - Date型: "date"
 - Timestamp型: "timestamp"
+
+## フィールドを加算して更新
+
+```
+db.<COLLECTION>.update(
+    <QUERY>,
+    {$inc: {<FIELD1>: <VALUE>, ...}}
+)
+```
+
+- 引き算の場合は<VALUE>に負の値を指定
+
+## フィールドを乗算して更新
+
+```
+db.<COLLECTION>.update(
+    <QUERY>,
+    {$mul: {<FIELD1>: <VALUE1>, ...}}
+)
+```
+
+- 割り算の場合は<VALUE>に逆数を指定
